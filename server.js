@@ -4,10 +4,19 @@ const mongoose = require("mongoose");
 const songsRouter = require("./routes/songs");
 const usersRouter = require("./routes/users");
 const path = require("path");
+const cors = require("cors");
 
 dotenv.config();
 
 const app = express();
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
+
 const port = process.env.PORT || 5000;
 
 const connectDB = async () => {
